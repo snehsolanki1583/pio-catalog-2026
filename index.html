@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer Enterprise | Premium Technical Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pioneer-navy': '#0f172a',
+                        'pioneer-blue': '#1e3a8a',
+                        'pioneer-orange': '#f97316',
+                        'pioneer-grey': '#f8fafc',
+                        'tech-border': '#e2e8f0',
+                    },
+                    fontFamily: {
+                        header: ['Oswald', 'sans-serif'],
+                        body: ['Roboto', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hex-pattern': "url('data:image/svg+xml,%3Csvg width=\\'24\\' height=\\'40\\' viewBox=\\'0 0 24 40\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M0 40c5.523 0 10-4.477 10-10V10c0-5.523-4.477-10-10-10s-10 4.477-10 10v20c0 5.523 4.477 10 10 10z\\' fill=\\'%231e3a8a\\' fill-opacity=\\'0.03\\' fill-rule=\\'evenodd\\'/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* A4 Paper Dimensions for Screen */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            margin: 0 auto 40px auto;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Technical Background */
+        .tech-bg {
+            background-color: #ffffff;
+        }
+        
+        /* Overlay Pattern */
+        .pattern-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Diagonal Accent */
+        .diagonal-cut {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+        
+        .diagonal-strip {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 100%;
+            background: #f8fafc;
+            transform: skewX(-20deg);
+            transform-origin: top;
+            border-left: 4px solid #f97316;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* Print Settings */
+        @media print {
+            body { background: white; -webkit-print-color-adjust: exact; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; height: 297mm; width: 210mm; border: none; }
+            .no-print { display: none !important; }
+        }
+
+        .img-placeholder {
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Content z-index fix */
+        .page > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qr-code-box {
+            background: white;
+            padding: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-10">
+
+    <!-- DOWNLOAD BUTTON (Hidden on Print) -->
+    <div class="fixed top-5 right-5 z-50 no-print">
+        <button onclick="window.print()" class="bg-pioneer-orange text-white font-bold py-3 px-6 rounded shadow-lg hover:bg-orange-600 flex items-center gap-2 transform transition hover:scale-105">
+            <i class="fa-solid fa-file-pdf"></i> Save as PDF
+        </button>
+    </div>
+
+    <!-- =========================
+         PAGE 1: FRONT COVER
+         ========================= -->
+    <div class="page tech-bg bg-hex-pattern">
+        <div class="pattern-overlay"></div>
+        
+        <!-- Top Branding Bar -->
+        <div class="h-4 bg-pioneer-navy w-full flex">
+            <div class="w-1/3 bg-pioneer-orange h-full"></div>
+        </div>
+        
+        <div class="flex justify-between items-center px-12 pt-12">
+            <div class="flex items-center gap-2 border border-pioneer-blue px-4 py-1 bg-white shadow-sm">
+                 <i class="fa-solid fa-certificate text-pioneer-orange"></i>
+                <div class="text-xs font-bold tracking-widest text-pioneer-blue uppercase">
+                    ISO 9001:2015 Certified
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Document ID</div>
+                <div class="font-mono font-bold text-pioneer-navy text-sm">PE-CAT-2025-V1</div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="px-12 mt-20 relative z-10">
+            <h1 class="font-header text-[7.5rem] text-pioneer-navy leading-[0.8] tracking-tighter drop-shadow-sm">
+                PIONEER<br><span class="text-pioneer-orange">ENTERPRISE</span>
+            </h1>
+            <div class="h-2 w-32 bg-pioneer-navy mt-8 mb-6"></div>
+            <h2 class="font-body text-3xl text-gray-700 font-light tracking-wide uppercase leading-tight">
+                Industrial Fluid Management <br><span class="font-bold text-pioneer-navy">& Power Plant Solutions</span>
+            </h2>
+        </div>
+
+        <!-- Main Visual -->
+        <div class="flex-grow mt-12 relative w-full h-96 diagonal-cut group">
+            <div class="img-placeholder w-full h-full bg-pioneer-navy">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80" alt="Industrial Factory Floor">
+                <div class="absolute inset-0 bg-gradient-to-t from-pioneer-navy/90 to-transparent opacity-70"></div>
+                
+                <!-- Floating Graphic Element -->
+                <div class="absolute bottom-20 right-12 text-white/10 text-9xl">
+                    <i class="fa-solid fa-gear fa-spin" style="animation-duration: 20s;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="absolute bottom-0 w-full bg-pioneer-navy text-white p-12">
+            <div class="grid grid-cols-2 items-center">
+                <div>
+                    <p class="font-header text-xl text-pioneer-orange mb-1 tracking-widest">MULTI-BRAND SUPPLY PARTNER</p>
+                    <p class="font-body text-sm text-gray-300 font-light tracking-wider border-l-2 border-pioneer-orange pl-3">
+                        PUMPS | VALVES | SPARES | INSTRUMENTATION
+                    </p>
+                </div>
+                <div class="text-right pl-6">
+                    <p class="text-sm font-light"><i class="fa-solid fa-location-dot text-pioneer-orange mr-2"></i> Vadodara, Gujarat, India</p>
+                    <p class="text-sm mt-1 font-light"><i class="fa-solid fa-globe text-pioneer-orange mr-2"></i> www.pioneerenterprise.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 2: COMPANY PROFILE
+         ========================= -->
+    <div class="page tech-bg">
+        <div class="pattern-overlay"></div>
+        <div class="diagonal-strip"></div>
+        
+        <div class="h-full px-12 py-16 flex flex-col">
+            <!-- Header -->
+            <div class="border-l-8 border-pioneer-orange pl-8 mb-12 relative">
+                <h3 class="font-header text-5xl text-pioneer-navy uppercase leading-none">Strategic Procurement<br>Partners</h3>
+                <p class="text-gray-500 font-body text-lg mt-3 font-light uppercase tracking-wide">Serving Power & Process Industries for Over a Decade</p>
+                
+                <!-- Emergency Badge -->
+                <div class="absolute top-0 right-0 bg-red-600 text-white p-3 shadow-lg rounded-sm transform rotate-2">
+                    <div class="text-center leading-tight">
+                        <div class="text-xs uppercase font-bold text-red-100">Shutdown Support</div>
+                        <div class="font-header text-2xl">24/7</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16">
+                <!-- Left Text -->
+                <div class="font-body text-gray-700 text-justify leading-relaxed text-sm flex flex-col justify-between z-10">
+                    <div>
+                        <p class="mb-6">
+                            Based in Vadodara, the engineering hub of Western India, <strong>Pioneer Enterprise</strong> is a premier supply chain partner for the Power, Chemical, and EPC sectors. We specialize in the procurement and supply of high-performance flow control equipment, piping systems, and critical spares.
+                        </p>
+                        <p class="mb-6">
+                            We operate on a <strong>Strategic Just-In-Time (JIT)</strong> model, partnering with multiple global manufacturers to deliver genuine components based on specific client requirements. Whether it is a thermal power plant shutdown or a greenfield chemical project, we deliver.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 bg-white p-8 shadow-xl border-t-4 border-pioneer-navy relative">
+                        <div class="absolute -top-3 left-4 bg-pioneer-navy text-white text-xs px-2 py-1 uppercase font-bold tracking-wider">The Pioneer Advantage</div>
+                        <ul class="space-y-4 text-sm mt-4">
+                            <li class="flex items-start">
+                                <span class="bg-pioneer-orange/10 p-1 rounded mr-3"><i class="fa-solid fa-certificate text-pioneer-orange"></i></span>
+                                <div>
+                                    <strong>Multi-Brand Dealerships</strong>
+                                    <div class="text-xs text-gray-500">Authorized partners for KSB, Beck, & more.</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-pioneer-orange/10 p-1 rounded mr-3"><i class="fa-solid fa-helmet-safety text-pioneer-orange"></i></span>
+                                <div>
+                                    <strong>Safety & Quality First</strong>
+                                    <div class="text-xs text-gray-500">Committed to HSE standards & MTC documentation.</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-pioneer-orange/10 p-1 rounded mr-3"><i class="fa-solid fa-stopwatch text-pioneer-orange"></i></span>
+                                <div>
+                                    <strong>Urgent Mobilization</strong>
+                                    <div class="text-xs text-gray-500">Specialized logistics for critical breakdowns.</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="flex flex-col gap-6">
+                    <div class="img-placeholder h-72 rounded-sm shadow-lg border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" alt="Industrial Warehouse">
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-4 mt-auto">
+                        <div class="bg-pioneer-navy text-white p-6 text-center shadow-lg relative overflow-hidden group border-b-4 border-pioneer-orange">
+                            <div class="absolute -right-4 -top-4 text-8xl text-white/5 group-hover:text-white/10 transition duration-500"><i class="fa-solid fa-industry"></i></div>
+                            <div class="text-5xl font-header text-white relative z-10">10<span class="text-pioneer-orange text-3xl">+</span></div>
+                            <div class="text-[10px] uppercase tracking-widest mt-1 relative z-10 text-gray-400">Years Experience</div>
+                        </div>
+                        <div class="bg-white text-pioneer-navy p-6 text-center shadow-lg relative overflow-hidden group border-b-4 border-pioneer-blue">
+                             <div class="absolute -right-4 -top-4 text-8xl text-pioneer-navy/5 group-hover:text-pioneer-navy/10 transition duration-500"><i class="fa-solid fa-box-open"></i></div>
+                            <div class="text-5xl font-header text-pioneer-navy relative z-10">2k<span class="text-pioneer-blue text-3xl">+</span></div>
+                            <div class="text-[10px] uppercase tracking-widest mt-1 relative z-10 text-gray-500">Orders Delivered</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Strip -->
+            <div class="mt-auto border-t border-gray-300 pt-6 flex justify-between items-end">
+                 <div class="text-6xl font-header text-gray-200 select-none tracking-widest">PROFILE</div>
+                 <div class="text-sm font-bold text-pioneer-navy border-b-2 border-pioneer-orange pb-1">02</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 3: PUMPS DIVISION
+         ========================= -->
+    <div class="page tech-bg">
+        <div class="pattern-overlay"></div>
+        <div class="px-12 py-12 h-full flex flex-col">
+            
+            <!-- Branding Header -->
+            <div class="flex justify-between items-end mb-10 pb-4 border-b-2 border-pioneer-navy">
+                <div>
+                    <h3 class="font-header text-4xl text-pioneer-navy uppercase">Fluid Handling</h3>
+                    <div class="text-pioneer-orange font-bold text-xs tracking-[0.3em] mt-1 uppercase">Pumps & Dosing Systems</div>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Authorized Brands Include</div>
+                    <div class="font-header text-xl text-pioneer-blue font-bold bg-gray-100 px-3 py-1 mt-1">KSB & Other Leading Makes</div>
+                </div>
+            </div>
+
+            <!-- Main Product -->
+            <div class="grid grid-cols-3 gap-10 mb-10">
+                <div class="col-span-2">
+                    <div class="img-placeholder h-80 rounded-sm shadow-xl border border-gray-200 bg-white p-8 group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-pioneer-orange/10 rounded-bl-full -mr-10 -mt-10 z-0"></div>
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80" style="object-fit:cover; z-index:10;" class="relative group-hover:scale-105 transition duration-500" alt="Industrial Pump Machine">
+                    </div>
+                </div>
+                <div class="col-span-1 flex flex-col justify-center">
+                    <h4 class="font-header text-2xl text-pioneer-navy mb-2 leading-none">Centrifugal <br>Process Pumps</h4>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed mt-2">Standardized chemical pumps designed for aggressive organic and inorganic fluids.</p>
+                    
+                    <div class="bg-white border-l-4 border-pioneer-blue shadow-md p-5 text-xs space-y-3">
+                        <div class="flex justify-between border-b border-gray-100 pb-2">
+                            <span class="text-gray-500 uppercase font-bold text-[10px]">Flow Rate</span> 
+                            <span class="font-bold text-pioneer-navy">Up to 1900 m³/h</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-100 pb-2">
+                            <span class="text-gray-500 uppercase font-bold text-[10px]">Head</span> 
+                            <span class="font-bold text-pioneer-navy">Up to 160 m</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500 uppercase font-bold text-[10px]">Temp</span> 
+                            <span class="font-bold text-pioneer-navy">-30°C to +300°C</span>
+                        </div>
+                    </div>
+
+                     <div class="mt-4 flex flex-wrap gap-2">
+                         <span class="bg-green-100 text-green-700 px-2 py-1 text-[10px] font-bold rounded">IE3/IE4 Compatible</span>
+                         <span class="bg-blue-100 text-blue-700 px-2 py-1 text-[10px] font-bold rounded">ATEX Certified</span>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Secondary Products Grid -->
+            <div class="grid grid-cols-2 gap-8 mt-4">
+                <!-- Product 2 -->
+                <div class="bg-white p-6 border-t-4 border-pioneer-orange shadow-lg relative overflow-hidden group hover:shadow-xl transition-shadow">
+                    <div class="absolute top-0 right-0 bg-gray-100 text-gray-500 text-[9px] px-2 py-1 font-bold uppercase tracking-wide">Boiler Feed</div>
+                    <h5 class="font-header text-xl text-pioneer-navy mb-1 group-hover:text-pioneer-orange transition-colors">Multistage Pumps</h5>
+                    <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide">High Pressure Applications</p>
+                    <ul class="text-xs text-gray-700 list-none space-y-2">
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-orange text-[8px] mr-2"></i> Power Plant Boiler Feed</li>
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-orange text-[8px] mr-2"></i> High Pressure Cleaning</li>
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-orange text-[8px] mr-2"></i> Mine Dewatering</li>
+                    </ul>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white p-6 border-t-4 border-pioneer-blue shadow-lg group hover:shadow-xl transition-shadow">
+                    <h5 class="font-header text-xl text-pioneer-navy mb-1 group-hover:text-pioneer-blue transition-colors">Submersible & Utility</h5>
+                    <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide">Water & Wastewater</p>
+                    <ul class="text-xs text-gray-700 list-none space-y-2">
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-blue text-[8px] mr-2"></i> Sewage & Effluent Transfer</li>
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-blue text-[8px] mr-2"></i> Stormwater Disposal</li>
+                        <li class="flex items-center"><i class="fa-solid fa-chevron-right text-pioneer-blue text-[8px] mr-2"></i> Vertical Turbine Pumps</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Genuine Spares Note -->
+            <div class="mt-auto bg-pioneer-navy text-white p-5 rounded-sm shadow-lg flex items-center gap-5 relative overflow-hidden">
+                <div class="absolute right-0 top-0 h-full w-24 bg-white/5 skew-x-12 transform origin-bottom-right"></div>
+                <div class="p-3 bg-white/10 rounded-full z-10">
+                     <i class="fa-solid fa-gear text-2xl text-pioneer-orange"></i>
+                </div>
+                <div class="z-10">
+                    <h6 class="font-header text-sm tracking-widest text-pioneer-orange">PUMP SPARES & MRO</h6>
+                    <p class="text-xs text-gray-300 mt-1">We supply genuine spares (Impellers, Shafts, Seals) for KSB, Kirloskar, and other major brands.</p>
+                </div>
+            </div>
+
+             <!-- Footer Number -->
+             <div class="pt-4 text-right">
+                <span class="text-sm font-bold text-pioneer-navy border-b-2 border-pioneer-orange pb-1">03</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 4: VALVES DIVISION
+         ========================= -->
+    <div class="page tech-bg">
+        <div class="pattern-overlay"></div>
+        <div class="px-12 py-12 h-full flex flex-col">
+            
+            <!-- Branding Header -->
+            <div class="flex justify-between items-end mb-12 border-b-2 border-pioneer-navy pb-4">
+                <div>
+                    <h3 class="font-header text-4xl text-pioneer-navy uppercase">Industrial Valves</h3>
+                    <div class="text-pioneer-orange font-bold text-xs tracking-[0.3em] mt-1 uppercase">Isolation & Control</div>
+                </div>
+                 <div class="text-right">
+                    <div class="text-xs text-gray-500 font-bold uppercase tracking-wide">Supply of Brands</div>
+                    <div class="font-header text-xl text-pioneer-blue font-bold bg-gray-100 px-3 py-1 mt-1">KSB, L&T, Audco, Flowserve</div>
+                </div>
+            </div>
+
+            <div class="flex gap-10 h-full">
+                <!-- Left Column: Highlight Product -->
+                <div class="w-1/2 flex flex-col">
+                    <div class="img-placeholder h-96 bg-white border border-gray-200 p-6 relative shadow-xl rounded-sm group">
+                        <img src="https://images.unsplash.com/photo-1623862270836-81492211566d?auto=format&fit=crop&q=80" style="object-fit:contain" class="group-hover:scale-105 transition duration-700" alt="Butterfly Valve">
+                        <div class="absolute bottom-6 left-6 bg-white/95 p-4 shadow-lg border-l-4 border-pioneer-orange">
+                            <h4 class="font-header text-3xl text-pioneer-navy leading-none">BUTTERFLY VALVES</h4>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">RUBBER LINED / HIGH PERFORMANCE</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-white p-6 border border-gray-200 shadow-md">
+                        <h5 class="font-header text-lg text-pioneer-navy mb-3 border-b border-gray-200 pb-2 flex items-center gap-2"><i class="fa-solid fa-sliders text-pioneer-orange"></i> Technical Specs</h5>
+                        <table class="w-full text-xs text-left border-collapse">
+                            <tr class="border-b border-gray-100"><th class="py-2 text-gray-500 font-medium uppercase text-[10px]">Size Range</th><td class="py-2 font-bold text-right text-pioneer-blue">DN 40 to DN 1200</td></tr>
+                            <tr class="border-b border-gray-100"><th class="py-2 text-gray-500 font-medium uppercase text-[10px]">Pressure</th><td class="py-2 font-bold text-right text-pioneer-blue">PN 10 / PN 16 / PN 25</td></tr>
+                            <tr class="border-b border-gray-100"><th class="py-2 text-gray-500 font-medium uppercase text-[10px]">Operation</th><td class="py-2 font-bold text-right text-pioneer-blue">Lever / Gear / Actuator</td></tr>
+                        </table>
+                        <div class="mt-3 text-[10px] text-gray-500 font-bold bg-gray-100 p-2 text-center">
+                            <i class="fa-solid fa-check text-green-600 mr-1"></i> IBR Certified with Form III-C Available
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Other Valves -->
+                <div class="w-1/2 flex flex-col gap-6">
+                    <!-- Gate/Globe -->
+                    <div class="group bg-white p-6 border-l-4 border-pioneer-navy shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="h-6 w-6 rounded bg-pioneer-orange text-white flex items-center justify-center font-bold text-[10px]">01</div>
+                            <h5 class="font-header text-xl text-pioneer-navy">Gate, Globe & Check</h5>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+                            High-pressure isolation valves designed for steam and process applications. Certified to API 600 / API 602 standards.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-[10px] font-mono text-gray-500">
+                            <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">Class 150# - 2500#</span>
+                            <span class="bg-red-50 text-red-700 px-2 py-1 rounded border border-red-100">Fire Safe API 607</span>
+                        </div>
+                    </div>
+
+                    <!-- Actuation -->
+                    <div class="group bg-white p-6 border-l-4 border-pioneer-navy shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="h-6 w-6 rounded bg-pioneer-navy text-white flex items-center justify-center font-bold text-[10px]">02</div>
+                            <h5 class="font-header text-xl text-pioneer-navy">Actuation Packages</h5>
+                        </div>
+                        <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+                            Complete automated valve solutions fitted with Pneumatic or Electric actuators for remote operation.
+                        </p>
+                    </div>
+
+                     <!-- Placeholder for Valve Group Image -->
+                     <div class="img-placeholder h-full rounded shadow-md border-4 border-white mt-2">
+                         <img src="https://images.unsplash.com/photo-1565514020125-6359eb8c0b59?auto=format&fit=crop&q=80" alt="Industrial Valves">
+                     </div>
+                </div>
+            </div>
+
+             <!-- Footer Number -->
+             <div class="mt-auto pt-4 text-right border-t border-gray-200">
+                <span class="text-sm font-bold text-pioneer-navy border-b-2 border-pioneer-orange pb-1">04</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 5: INSTRUMENTATION
+         ========================= -->
+    <div class="page bg-pioneer-navy text-white">
+        <div class="px-12 py-16 h-full flex flex-col relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute -right-20 -top-20 w-[30rem] h-[30rem] rounded-full border-[30px] border-white/5"></div>
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+            
+            <div class="z-10 relative h-full flex flex-col">
+                <div class="border-l-4 border-pioneer-orange pl-6 mb-12">
+                     <h3 class="font-header text-5xl text-white mb-2 uppercase">Instrumentation</h3>
+                     <p class="text-pioneer-orange tracking-[0.4em] text-xs font-bold">SENSORS | TRANSMITTERS | SWITCHES</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-12 flex-grow">
+                    <!-- Product 1 - Updated to Gauge -->
+                    <div class="flex flex-col group">
+                        <div class="img-placeholder h-64 bg-white/5 border border-white/10 mb-6 rounded-lg backdrop-blur-sm p-8 shadow-2xl group-hover:border-pioneer-orange/50 transition duration-500">
+                             <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80" style="object-fit:cover; opacity:0.9" alt="Industrial Gauge">
+                        </div>
+                        <h4 class="font-header text-3xl text-white">Pressure Switches</h4>
+                        <div class="w-12 h-1 bg-pioneer-orange my-4 group-hover:w-24 transition-all duration-500"></div>
+                        <p class="text-gray-300 text-sm font-light leading-relaxed">
+                            Adjustable differential pressure switches for air, gas, and non-corrosive fluids. We deal in **Beck**, **Danfoss**, and other reputed makes.
+                        </p>
+                    </div>
+
+                    <!-- Product 2 - Updated to Industrial Meter -->
+                    <div class="flex flex-col group">
+                        <div class="img-placeholder h-64 bg-white/5 border border-white/10 mb-6 rounded-lg backdrop-blur-sm p-8 shadow-2xl group-hover:border-pioneer-blue/50 transition duration-500">
+                             <img src="https://images.unsplash.com/photo-1580983561371-7f4b242d8ec0?auto=format&fit=crop&q=80" style="object-fit:cover; opacity:0.9" alt="Pressure Gauge">
+                        </div>
+                        <h4 class="font-header text-3xl text-white">Flow & Level</h4>
+                        <div class="w-12 h-1 bg-pioneer-orange my-4 group-hover:w-24 transition-all duration-500"></div>
+                        <p class="text-gray-300 text-sm font-light leading-relaxed">
+                            High precision Flow Meters, Level Transmitters, and Gauges for process monitoring. Suitable for hazardous area applications.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-auto border-t border-white/10 pt-8">
+                    <h5 class="font-header text-xl text-pioneer-orange mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-crosshairs text-sm"></i> KEY APPLICATIONS
+                    </h5>
+                    <div class="grid grid-cols-3 gap-6 text-xs font-mono text-gray-300 tracking-wide">
+                        <div class="bg-white/5 p-4 rounded border border-white/10 text-center hover:bg-white/10 transition cursor-default">HVAC MONITORING</div>
+                        <div class="bg-white/5 p-4 rounded border border-white/10 text-center hover:bg-white/10 transition cursor-default">BOILER INSTRUMENTATION</div>
+                        <div class="bg-white/5 p-4 rounded border border-white/10 text-center hover:bg-white/10 transition cursor-default">FILTER STATUS CONTROL</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Number -->
+            <div class="mt-6 text-right">
+                <span class="text-sm font-bold text-pioneer-orange border-b border-white/30 pb-1">05</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 6: GENERAL TRADING & SPARES
+         ========================= -->
+    <div class="page tech-bg">
+        <div class="pattern-overlay"></div>
+        <div class="px-12 py-12 h-full flex flex-col">
+            
+            <div class="border-l-8 border-pioneer-orange pl-6 mb-10">
+                <h3 class="font-header text-4xl text-pioneer-navy uppercase">Spares, Piping & Hoses</h3>
+                <p class="text-gray-500 font-body text-sm mt-2 uppercase tracking-wide">Complete MRO & Project Supply</p>
+            </div>
+
+            <!-- Intro Text -->
+            <div class="flex gap-4 mb-8">
+                 <i class="fa-solid fa-quote-left text-4xl text-gray-300"></i>
+                <p class="text-sm text-gray-600 max-w-2xl leading-relaxed mt-2 font-light italic">
+                    Beyond capital equipment, we maintain a robust supply chain for MRO (Maintenance, Repair, and Operations) items. We supply structural components, hoses, and consumables based on your specific requirements.
+                </p>
+            </div>
+
+            <!-- Technical Table -->
+            <div class="border border-gray-200 rounded-sm overflow-hidden mb-8 shadow-lg">
+                <table class="w-full text-sm">
+                    <thead class="bg-pioneer-navy text-white font-header tracking-wide text-xs uppercase">
+                        <tr>
+                            <th class="p-4 text-left font-light text-gray-300">Category</th>
+                            <th class="p-4 text-left font-light text-gray-300">Products / Specifications</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-body text-gray-700 text-xs">
+                        <tr class="border-b border-gray-200 bg-gray-50/50">
+                            <td class="p-4 font-bold text-pioneer-blue text-sm"><i class="fa-solid fa-wrench mr-2 text-gray-400"></i>Piping</td>
+                            <td class="p-4 leading-relaxed">
+                                Seamless (ASTM A106 Gr.B) & ERW Pipes, SS Pipes (304/316).<br>
+                                <span class="text-pioneer-orange font-bold">IBR Certified</span> Piping with Form III-C. <br>
+                                <span class="bg-blue-100 px-1 rounded text-pioneer-blue">Alloy Grades: P11, P22, P91</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                             <td class="p-4 font-bold text-pioneer-blue text-sm"><i class="fa-solid fa-link mr-2 text-gray-400"></i>Fittings</td>
+                            <td class="p-4">Flanges (Slip-on, Weld Neck), Elbows, Tees, Reducers, Couplings (Forged & Butt-weld).</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50/50">
+                             <td class="p-4 font-bold text-pioneer-blue text-sm"><i class="fa-solid fa-water mr-2 text-gray-400"></i>Ind. Hoses</td>
+                            <td class="p-4">SS Corrugated Flexible Hoses, Hydraulic Hoses, Chemical Composite Hoses, PTFE Lined Hoses.</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                             <td class="p-4 font-bold text-pioneer-blue text-sm"><i class="fa-solid fa-gear mr-2 text-gray-400"></i>Plant Spares</td>
+                            <td class="p-4">
+                                Gaskets (Spiral Wound, CAF), Fasteners (High Tensile), Mechanical Seals, Bearings.<br>
+                                <span class="text-orange-600 font-bold text-[10px] mt-1 inline-block">*Reverse Engineering services available for obsolete parts.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Visuals -->
+            <div class="grid grid-cols-2 gap-8 mt-4 flex-grow">
+                <div class="bg-white p-6 border-l-4 border-pioneer-blue shadow-md flex flex-col justify-center">
+                    <h5 class="font-header text-2xl text-pioneer-navy mb-4">MRO SOLUTIONS</h5>
+                    <ul class="text-xs space-y-4 text-gray-600">
+                        <li class="border-b border-gray-100 pb-2">
+                            <strong class="text-pioneer-navy block mb-1">Fast Response</strong>
+                            We understand breakdowns. We provide quick quotes for urgent spare requirements.
+                        </li>
+                        <li class="border-b border-gray-100 pb-2">
+                            <strong class="text-pioneer-navy block mb-1">Custom Fabrication</strong>
+                            Custom length hose assemblies and specialized fittings available on request.
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex flex-col h-full">
+                    <div class="img-placeholder rounded-sm shadow-md h-full border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1535063406560-392d3731f84c?auto=format&fit=crop&q=80" alt="Steel Pipes & Spares">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Number -->
+            <div class="mt-auto pt-4 text-right border-t border-gray-200">
+                <span class="text-sm font-bold text-pioneer-navy border-b-2 border-pioneer-orange pb-1">06</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 7: CLIENTS & INDUSTRIES
+         ========================= -->
+    <div class="page tech-bg">
+        <div class="pattern-overlay"></div>
+        <div class="px-12 py-12 h-full flex flex-col">
+            <h3 class="font-header text-4xl text-center text-pioneer-navy mb-12 tracking-wide uppercase">Serving The Industry</h3>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <!-- Tile 1 -->
+                <div class="bg-white p-8 shadow-md border-t-4 border-pioneer-orange flex gap-5 group hover:shadow-xl transition-all duration-300">
+                    <div class="text-4xl text-pioneer-navy group-hover:text-pioneer-orange transition-colors"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <h4 class="font-header text-xl text-pioneer-navy">Power Generation</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1 mb-2 font-bold">Thermal & Hydro</p>
+                        <p class="text-sm mt-2 text-gray-600 font-light">Specialized supply for Boiler Feed pumps, High-pressure valves, and Ash Handling spares.</p>
+                    </div>
+                </div>
+
+                <!-- Tile 2 -->
+                <div class="bg-white p-8 shadow-md border-t-4 border-pioneer-blue flex gap-5 group hover:shadow-xl transition-all duration-300">
+                    <div class="text-4xl text-pioneer-navy group-hover:text-pioneer-blue transition-colors"><i class="fa-solid fa-flask"></i></div>
+                    <div>
+                        <h4 class="font-header text-xl text-pioneer-navy">Chemical & Petrochem</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1 mb-2 font-bold">Process Industry</p>
+                        <p class="text-sm mt-2 text-gray-600 font-light">Handling corrosive fluids, acids, and solvents with PTFE lined valves and pumps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Major Clients Section -->
+            <div class="bg-white p-8 shadow-lg border border-gray-200 flex-grow relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 text-9xl text-gray-100 rotate-12"><i class="fa-solid fa-handshake"></i></div>
+                
+                <h4 class="font-header text-2xl text-pioneer-navy mb-6 border-b border-gray-100 pb-2 relative z-10">Esteemed Clientele</h4>
+                <p class="text-sm text-gray-500 mb-8 relative z-10">Trusted by major PSUs and Private Corporations including:</p>
+                
+                <div class="grid grid-cols-2 gap-y-6 gap-x-8 relative z-10">
+                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-pioneer-orange text-xl"></i>
+                        <div>
+                            <span class="font-bold text-pioneer-navy block">PCBL</span>
+                            <span class="text-[10px] text-gray-500 uppercase">Phillips Carbon Black Ltd</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-pioneer-orange text-xl"></i>
+                        <div>
+                            <span class="font-bold text-pioneer-navy block">GSECL</span>
+                            <span class="text-[10px] text-gray-500 uppercase">Gujarat State Electricity Corp</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-pioneer-orange text-xl"></i>
+                        <div>
+                            <span class="font-bold text-pioneer-navy block">RUVNL</span>
+                            <span class="text-[10px] text-gray-500 uppercase">Rajasthan Urja Vikas Nigam</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-3 bg-gray-50 rounded border border-gray-100">
+                        <i class="fa-solid fa-check-circle text-pioneer-orange text-xl"></i>
+                        <div>
+                            <span class="font-bold text-pioneer-navy block">Other Utilities</span>
+                            <span class="text-[10px] text-gray-500 uppercase">State & Private Power Plants</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Image Strip - Updated to Heavy Industry -->
+            <div class="mt-8 mb-8">
+                <div class="grid grid-cols-3 gap-3 h-32">
+                    <div class="img-placeholder bg-gray-300 rounded overflow-hidden shadow-inner"><img src="https://images.unsplash.com/photo-1565514020125-6359eb8c0b59?auto=format&fit=crop&q=80" alt="Refinery Piping"></div>
+                    <div class="img-placeholder bg-gray-300 rounded overflow-hidden shadow-inner"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80" alt="Industrial Welding"></div>
+                    <div class="img-placeholder bg-gray-300 rounded overflow-hidden shadow-inner"><img src="https://images.unsplash.com/photo-1533062602773-f38b005f9285?auto=format&fit=crop&q=80" alt="Heavy Machinery"></div>
+                </div>
+            </div>
+
+            <!-- Footer Number -->
+            <div class="pt-4 text-right border-t border-gray-200">
+                <span class="text-sm font-bold text-pioneer-navy border-b-2 border-pioneer-orange pb-1">07</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================
+         PAGE 8: CONTACT US (REDESIGNED)
+         ========================= -->
+    <div class="page bg-pioneer-navy text-white relative overflow-hidden">
+        <!-- Technical Grid Background -->
+        <div class="absolute inset-0 bg-hex-pattern opacity-10"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-pioneer-orange/10 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 h-full flex flex-col justify-center items-center px-12 py-16 text-center">
+            
+            <!-- Logo Section -->
+            <div class="mb-12">
+                <h1 class="font-header text-6xl tracking-tight leading-none mb-2">PIONEER<br><span class="text-pioneer-orange">ENTERPRISE</span></h1>
+                <div class="w-24 h-1 bg-white mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Process Steps -->
+            <div class="w-full max-w-4xl grid grid-cols-3 gap-8 mb-16">
+                <div class="relative group">
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-2xl border border-white/20 mb-4 group-hover:bg-pioneer-orange group-hover:text-pioneer-navy transition-all duration-300">1</div>
+                    <h4 class="font-header text-xl mb-2">Send Inquiry</h4>
+                    <p class="text-sm text-gray-400 font-light">Share your BOQ or technical datasheets via Email or WhatsApp.</p>
+                </div>
+                <div class="relative group">
+                    <div class="absolute top-8 -right-1/2 w-full h-[1px] bg-white/10 hidden md:block"></div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-2xl border border-white/20 mb-4 group-hover:bg-pioneer-orange group-hover:text-pioneer-navy transition-all duration-300">2</div>
+                    <h4 class="font-header text-xl mb-2">Technical Offer</h4>
+                    <p class="text-sm text-gray-400 font-light">Receive a competitive commercial & technical proposal within 24 hours.</p>
+                </div>
+                <div class="relative group">
+                     <div class="absolute top-8 -left-1/2 w-full h-[1px] bg-white/10 hidden md:block"></div>
+                    <div class="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center text-2xl border border-white/20 mb-4 group-hover:bg-pioneer-orange group-hover:text-pioneer-navy transition-all duration-300">3</div>
+                    <h4 class="font-header text-xl mb-2">Project Delivery</h4>
+                    <p class="text-sm text-gray-400 font-light">Mobilization of genuine materials with full MTC documentation.</p>
+                </div>
+            </div>
+
+            <!-- Main Contact Card -->
+            <div class="bg-white text-pioneer-navy w-full max-w-3xl rounded-sm shadow-2xl p-10 relative">
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-pioneer-orange text-white px-6 py-2 text-sm font-bold uppercase tracking-widest shadow-lg">Partner With Us</div>
+                
+                <div class="grid grid-cols-2 gap-8 mt-4 text-left">
+                    <div class="space-y-6 border-r border-gray-100 pr-8">
+                        <div class="flex gap-4 items-start">
+                            <div class="mt-1"><i class="fa-solid fa-location-dot text-pioneer-orange text-xl"></i></div>
+                            <div>
+                                <p class="text-xs uppercase font-bold text-gray-400 tracking-wider mb-1">Headquarters</p>
+                                <p class="text-sm font-medium leading-relaxed">
+                                    [Insert Shop No], [Building Name],<br>
+                                    Vadodara - [Zip Code],<br>
+                                    Gujarat, India.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                             <div class="mt-1"><i class="fa-solid fa-phone text-pioneer-orange text-xl"></i></div>
+                             <div>
+                                <p class="text-xs uppercase font-bold text-gray-400 tracking-wider mb-1">Sales Hotline</p>
+                                <p class="text-lg font-bold">+91 [Your Phone Number]</p>
+                            </div>
+                        </div>
+                         <div class="flex gap-4 items-start">
+                             <div class="mt-1"><i class="fa-solid fa-envelope text-pioneer-orange text-xl"></i></div>
+                             <div>
+                                <p class="text-xs uppercase font-bold text-gray-400 tracking-wider mb-1">Official Email</p>
+                                <p class="text-sm font-bold">[Your Email Address]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center text-center pl-8">
+                        <div class="bg-white p-2 border border-gray-200 shadow-inner mb-4">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/919999999999" alt="WhatsApp QR" width="120" height="120">
+                        </div>
+                        <p class="font-header text-lg text-pioneer-navy">SCAN TO CHAT</p>
+                        <p class="text-xs text-gray-500 mt-1">Direct WhatsApp Support for Site Engineers</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-xs text-gray-500 font-mono">
+                <p class="opacity-50">GSTIN: [Your GST Number] | MSME Registered</p>
+                <p class="mt-2 text-pioneer-orange">PIONEER ENTERPRISE &copy; 2025</p>
+            </div>
+            
+        </div>
+        <div class="h-2 w-full bg-gradient-to-r from-pioneer-navy via-pioneer-orange to-pioneer-navy absolute bottom-0"></div>
+    </div>
+
+</body>
+</html>
